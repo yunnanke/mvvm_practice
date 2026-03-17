@@ -1,0 +1,164 @@
+﻿<Window x:Class="lab3_mvvm.MainWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:local="clr-namespace:lab3_mvvm"
+            Title="Lines" Height="605" Width="650"
+            Background="#F8F9FA"
+            FontFamily="Segoe UI"
+            Foreground="#212529">
+
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Анализ двух прямых" 
+                       FontSize="24" 
+                       FontWeight="SemiBold"
+                       Margin="-10,-16,0,27"
+                       Foreground="Brown" Background="BlanchedAlmond" FontFamily="Arial Black"/>
+
+        <Border Background="White" 
+                    CornerRadius="8" 
+                    Padding="20"
+                    Margin="0,0,0,20"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="1"
+                    Grid.Row="1">
+            <StackPanel>
+                <TextBlock Text="Коэффициенты" 
+                               FontWeight="Bold" 
+                               FontSize="16" 
+                               Margin="0,0,0,12"
+                               Foreground="BurlyWood" FontFamily="Arial Black"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="Прямая 1" FontWeight="SemiBold" Margin="0,0,0,8" FontFamily="Bahnschrift Light"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="a₁ = " VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Line1.A, UpdateSourceTrigger=PropertyChanged}" 
+                                         Width="80" 
+                                         Padding="4"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="b₁ = " VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Line1.B, UpdateSourceTrigger=PropertyChanged}" 
+                                         Width="80" 
+                                         Padding="4"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Прямая 2" FontWeight="SemiBold" Margin="0,0,0,8" FontFamily="Bahnschrift Light"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="a₂ = " VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Line2.A, UpdateSourceTrigger=PropertyChanged}" 
+                                         Width="80" 
+                                         Padding="4"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="b₂ = " VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Line2.B, UpdateSourceTrigger=PropertyChanged}" 
+                                         Width="80" 
+                                         Padding="4"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Border Background="White" 
+                    CornerRadius="8" 
+                    Padding="20"
+                    Margin="0,0,0,20"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="1"
+                    Grid.Row="2">
+            <StackPanel>
+                <TextBlock Text="Результаты" 
+                               FontWeight="Bold" 
+                               FontSize="16" 
+                               Margin="0,0,0,12"
+                               Foreground="Chocolate" FontFamily="Arial Black"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <TextBlock>
+                                <TextBlock Text="Уравнение 1: " FontWeight="SemiBold" FontFamily="Bahnschrift Light"/>
+                                <TextBlock Text="{Binding Line1.Equation}"/>
+                            </TextBlock>
+                        <TextBlock>
+                                <TextBlock Text="X-пересечение: " FontWeight="SemiBold" FontFamily="Bahnschrift Light"/>
+                                <TextBlock Text="{Binding Line1.XIntercept}"/>
+                            </TextBlock>
+                        <TextBlock>
+                                <TextBlock Text="Y-пересечение: " FontWeight="SemiBold" FontFamily="Bahnschrift Light"/>
+                                <TextBlock Text="{Binding Line1.YIntercept}"/>
+                            </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock>
+                                <TextBlock Text="Уравнение 2: " FontWeight="SemiBold" FontFamily="Bahnschrift Light"/>
+                                <TextBlock Text="{Binding Line2.Equation}"/>
+                            </TextBlock>
+                        <TextBlock>
+                                <TextBlock Text="X-пересечение: " FontWeight="SemiBold" FontFamily="Bahnschrift Light"/>
+                                <TextBlock Text="{Binding Line2.XIntercept}"/>
+                            </TextBlock>
+                        <TextBlock>
+                                <TextBlock Text="Y-пересечение: " FontWeight="SemiBold" FontFamily="Bahnschrift Light"/>
+                                <TextBlock Text="{Binding Line2.YIntercept}"/>
+                            </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Border Background="White" 
+                    CornerRadius="8" 
+                    Padding="20"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="1"
+                    Grid.Row="3">
+            <StackPanel>
+                <TextBlock Text="Сравнение" 
+                               FontWeight="Bold" 
+                               FontSize="16" 
+                               Margin="0,0,0,12"
+                               Foreground="BurlyWood" FontFamily="Arial Black"/>
+
+                <StackPanel Orientation="Vertical" Height="58">
+                    <TextBlock>
+                            <TextBlock Text="Перпендикулярны: " FontWeight="SemiBold" FontFamily="Bahnschrift Light"/>
+                            <TextBlock Text="{Binding ArePerpendicular}"/>
+                        </TextBlock>
+                    <TextBlock>
+                            <TextBlock Text="Угол между ними: " FontWeight="SemiBold" FontFamily="Bahnschrift Light"/>
+                            <TextBlock Text="{Binding Angle}"/>
+                        </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>
